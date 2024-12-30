@@ -1,0 +1,169 @@
+import java.util.*;
+
+public class StudentGradeTracker {
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        System.out.println("--- Student Grade Tracker ---");
+        System.out.print("Enter the student's name: ");
+        String studentName = scanner.nextLine();
+
+        Map<String, Double> grades = new LinkedHashMap<>();
+        while (true) {
+            System.out.println("\n1. Add Grade");
+            System.out.println("2. Calculate Average");
+            System.out.println("3. View Grades");
+            System.out.println("4. Exit");
+            System.out.print("Choose an option: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // consume newline
+
+            switch (choice) {
+                case 1 -> addGrade(grades);
+                case 2 -> calculateAverage(studentName, grades);
+                case 3 -> viewGrades(grades);
+                case 4 -> {
+                    System.out.println("Exiting program. Goodbye!");
+                    return;
+                }
+                default -> System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    private static void addGrade(Map<String, Double> grades) {
+        System.out.print("Enter subject or assignment name: ");
+        String subject = scanner.nextLine();
+        System.out.print("Enter grade (0-100): ");
+        double grade = scanner.nextDouble();
+
+        if (grade < 0 || grade > 100) {
+            System.out.println("Invalid grade. Please enter a value between 0 and 100.");
+        } else {
+            grades.put(subject, grade);
+            System.out.println("Grade added successfully.");
+        }
+    }
+
+    private static void calculateAverage(String studentName, Map<String, Double> grades) {
+        if (grades.isEmpty()) {
+            System.out.println("No grades available to calculate average.");
+            return;
+        }
+
+        double total = 0;
+        for (double grade : grades.values()) {
+            total += grade;
+        }
+        double average = total / grades.size();
+        String letterGrade = getLetterGrade(average);
+
+        System.out.println("\n--- Grade Summary for " + studentName + " ---");
+        System.out.println("Average Grade: " + String.format("%.2f", average));
+        System.out.println("Letter Grade: " + letterGrade);
+    }
+
+    private static String getLetterGrade(double average) {
+        if (average >= 90) return "A";
+        if (average >= 80) return "B";
+        if (average >= 70) return "C";
+        if (average >= 60) return "D";
+        return "F";
+    }
+
+    private static void viewGrades(Map<String, Double> grades) {
+        if (grades.isEmpty()) {
+            System.out.println("No grades available.");
+            return;
+        }
+
+        System.out.println("\n--- Grades ---");
+        for (Map.Entry<String, Double> entry : grades.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+    }
+}import java.util.*;
+
+public class StudentGradeTracker {
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        System.out.println("--- Student Grade Tracker ---");
+        System.out.print("Enter the student's name: ");
+        String studentName = scanner.nextLine();
+
+        Map<String, Double> grades = new LinkedHashMap<>();
+        while (true) {
+            System.out.println("\n1. Add Grade");
+            System.out.println("2. Calculate Average");
+            System.out.println("3. View Grades");
+            System.out.println("4. Exit");
+            System.out.print("Choose an option: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // consume newline
+
+            switch (choice) {
+                case 1 -> addGrade(grades);
+                case 2 -> calculateAverage(studentName, grades);
+                case 3 -> viewGrades(grades);
+                case 4 -> {
+                    System.out.println("Exiting program. Goodbye!");
+                    return;
+                }
+                default -> System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    private static void addGrade(Map<String, Double> grades) {
+        System.out.print("Enter subject or assignment name: ");
+        String subject = scanner.nextLine();
+        System.out.print("Enter grade (0-100): ");
+        double grade = scanner.nextDouble();
+
+        if (grade < 0 || grade > 100) {
+            System.out.println("Invalid grade. Please enter a value between 0 and 100.");
+        } else {
+            grades.put(subject, grade);
+            System.out.println("Grade added successfully.");
+        }
+    }
+
+    private static void calculateAverage(String studentName, Map<String, Double> grades) {
+        if (grades.isEmpty()) {
+            System.out.println("No grades available to calculate average.");
+            return;
+        }
+
+        double total = 0;
+        for (double grade : grades.values()) {
+            total += grade;
+        }
+        double average = total / grades.size();
+        String letterGrade = getLetterGrade(average);
+
+        System.out.println("\n--- Grade Summary for " + studentName + " ---");
+        System.out.println("Average Grade: " + String.format("%.2f", average));
+        System.out.println("Letter Grade: " + letterGrade);
+    }
+
+    private static String getLetterGrade(double average) {
+        if (average >= 90) return "A";
+        if (average >= 80) return "B";
+        if (average >= 70) return "C";
+        if (average >= 60) return "D";
+        return "F";
+    }
+
+    private static void viewGrades(Map<String, Double> grades) {
+        if (grades.isEmpty()) {
+            System.out.println("No grades available.");
+            return;
+        }
+
+        System.out.println("\n--- Grades ---");
+        for (Map.Entry<String, Double> entry : grades.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+    }
+}
